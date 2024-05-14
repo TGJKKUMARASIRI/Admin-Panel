@@ -1,4 +1,5 @@
 import CompanyList from './Pages/CompanyList';
+import CompanyDetails from './Pages/Components/CompanyList/CompanyDetails';
 import Home from './Pages/Home';
 import LogIn from './Pages/LogIn';
 import Payment from './Pages/Payment';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Update Manager" exact element={<UpdateManager />}></Route>
         <Route path="/LogIn" exact element={<LogIn />}></Route>
         <Route path="/Company List" exact element={<CompanyList />}></Route>
+        <Route path="/details/:id" element={<CompanyDetails />}></Route>
       </Routes>
     </BrowserRouter>
   );
