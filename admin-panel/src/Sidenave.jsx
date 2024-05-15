@@ -24,7 +24,7 @@ const drawerWidth = 240;
 
 const ColoredListItem = styled(ListItem)(({ theme }) => ({
   '&.sublist': {
-    backgroundColor: '#f8f8f8', // Light Red
+    paddingLeft: 15,
   }
 }));
 
@@ -40,23 +40,26 @@ export default function Sidenave() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
       <Drawer 
         sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
+            backgroundColor: '#00000e',
             boxSizing: 'border-box',
+            color: '#dbdbef'
+          },
+          '& .MuiListItem-root': {
+            '&:hover': {
+              backgroundColor: '#29292e', // Set the hover color to a darker shade
+            },
+          },
+          '& .MuiSvgIcon-root': {
+            color: '#dbdbef', // Set the color of icons to white
+          },
+          '& .MuiDivider-root': {
+            backgroundColor: '#dbdbef', // Set the color of the divider to white
           },
         }}
         variant="permanent"

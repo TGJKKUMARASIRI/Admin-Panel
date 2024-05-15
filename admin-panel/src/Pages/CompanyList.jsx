@@ -5,11 +5,12 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 // import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import Layout from './Layout';
 import CompanyListTable from './Components/CompanyList/CompanyListTable';
+import NewCompany from './Components/CompanyList/NewCompany';
 // import ListItemIcon from '@mui/material/ListItemIcon';
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -37,7 +38,8 @@ const CompanyList = ({ children }) => {
                                         {/* </Typography> */}
                                     </CardContent>
                                     <StyledActions>
-                                        <Button size="small">+ Add a Company</Button>
+                                        {/* <Button size="small">+ Add a Company</Button> */}
+                                        <NewCompany />
                                     </StyledActions>
                                 </Card>
                             </Grid>

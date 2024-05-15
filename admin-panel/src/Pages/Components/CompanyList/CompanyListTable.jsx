@@ -60,7 +60,19 @@ const rows = Array.from({ length: 200 }, (_, index) => {
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
-        <TableContainer component={Paper} {...props} ref={ref} />
+        <TableContainer 
+        component={Paper} 
+        {...props} 
+        ref={ref} 
+        sx={{ 
+          // Set the styles for the scroller
+          overflow: 'auto', // Enable scrolling
+          '&::-webkit-scrollbar': {
+            width: 0, // Hide the scrollbar in webkit browsers (Chrome, Safari, etc.)
+          },
+          scrollbarWidth: 'none', // Hide the scrollbar in Firefox
+        }}
+        />
   )),
   Table: (props) => (
     <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
