@@ -21,42 +21,23 @@ function createData(id, dessert, calories, fat, carbs, protein) {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
+// Create rows data from sample
+const rows = sample.map((item, index) => 
+  createData(index, item[0], item[1], item[2], item[3], item[4])
+);
+
 const columns = [
   {
     width: 200,
     label: 'Dessert',
     dataKey: 'dessert',
   }
-//   {
-//     width: 120,
-//     label: 'Calories\u00A0(g)',
-//     dataKey: 'calories',
-//     numeric: true,
-//   },
-//   {
-//     width: 120,
-//     label: 'Fat\u00A0(g)',
-//     dataKey: 'fat',
-//     numeric: true,
-//   },
-//   {
-//     width: 120,
-//     label: 'Carbs\u00A0(g)',
-//     dataKey: 'carbs',
-//     numeric: true,
-//   },
-//   {
-//     width: 120,
-//     label: 'Protein\u00A0(g)',
-//     dataKey: 'protein',
-//     numeric: true,
-//   },
 ];
 
-const rows = Array.from({ length: 200 }, (_, index) => {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  return createData(index, ...randomSelection);
-});
+// const rows = Array.from({ length: 200 }, (_, index) => {
+//   const randomSelection = sample[Math.floor(Math.random() * sample.length)];
+//   return createData(index, ...randomSelection);
+// });
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (

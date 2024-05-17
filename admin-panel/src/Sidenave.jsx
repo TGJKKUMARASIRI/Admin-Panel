@@ -18,6 +18,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ListIcon from '@mui/icons-material/List';
 import { useNavigate } from 'react-router-dom';
+import useFlexaroUser from './flexaro_user';
 
 
 const drawerWidth = 240;
@@ -29,6 +30,13 @@ const ColoredListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 export default function Sidenave() {
+  const { logout } = useFlexaroUser();
+
+  const handleLogout = () => {
+    logout();
+    nevigate('/LogIn');
+  };
+
   const [isCompanyDetailsOpen, setIsCompanyDetailsOpen] = React.useState(false);
 
   const toggleCompanyDetails = () => {
@@ -40,7 +48,7 @@ export default function Sidenave() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Drawer 
+      <Drawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -138,7 +146,7 @@ export default function Sidenave() {
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Sign Out" onClick={() => { nevigate('/LogIn') }} />
+              <ListItemText primary="Sign Out" onClick={handleLogout} />
             </ListItemButton>
           </ListItem>
         </List>

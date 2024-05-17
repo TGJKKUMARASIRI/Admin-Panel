@@ -15,17 +15,23 @@ export default function CompanyDetails() {
   const item = sampleData.find((data) => data.id === parseInt(id));
 
   if (!item) {
-    return <div>No details available for this item</div>;
+    return (
+      <div>
+        <CompanyList>
+          No details available for this item
+        </CompanyList>
+      </div>
+    );
   }
 
   return (
     <div>
-        <CompanyList>
-      <h2>Details for {item.dessert}</h2>
-      <p>Calories: {item.calories}</p>
-      <p>Fat: {item.fat}</p>
-      <p>Carbs: {item.carbs}</p>
-      <p>Protein: {item.protein}</p>
+      <CompanyList>
+        <h2>Details for {item.dessert}</h2>
+        <p>Calories: {item.calories}</p>
+        <p>Fat: {item.fat}</p>
+        <p>Carbs: {item.carbs}</p>
+        <p>Protein: {item.protein}</p>
       </CompanyList>
     </div>
   );

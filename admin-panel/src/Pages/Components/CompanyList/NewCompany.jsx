@@ -59,12 +59,17 @@ function NewCompany() {
                                 id="outlined-required"
                                 label="Company Email"
                             />
-                            <TextField
-                                id="outlined-password-input"
-                                label="Password"
-                                type="password"
-                                autoComplete="current-password"
-                            />
+                            <Stack spacing={2} direction={'row'}>
+                                <TextField
+                                    required
+                                    id="outlined-required"
+                                    label="Phone Number"
+                                />
+                                {/* <TextField
+                                    id="outlined-required"
+                                    label="Phone Number"
+                                /> */}
+                            </Stack>
                             <Button
                                 variant="contained"
                                 type="submit"

@@ -8,7 +8,6 @@ import CardContent from '@mui/material/CardContent';
 // import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
-import Layout from './Layout';
 import CompanyListTable from './Components/CompanyList/CompanyListTable';
 import NewCompany from './Components/CompanyList/NewCompany';
 // import ListItemIcon from '@mui/material/ListItemIcon';
@@ -23,7 +22,6 @@ const StyledActions = styled('div')({
 const CompanyList = ({ children }) => {
     return (
         <>
-            <Layout>
                 <div>
                     <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
                         <Grid container spacing={2}>
@@ -58,7 +56,6 @@ const CompanyList = ({ children }) => {
                         </Grid>
                     </Box>
                 </div>
-            </Layout >
         </>
     )
 }
