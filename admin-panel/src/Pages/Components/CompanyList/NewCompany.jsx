@@ -3,25 +3,53 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-// import DialogActions from '@mui/material/DialogActions';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { createCompany } from './CreateCompanyApi';
 
 function NewCompany() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Add form submission logic here
-        console.log('Form submitted');
-    };
-
     const [open, setOpen] = useState(false);
+    const [companyName, setCompanyName] = useState('');
+    const [companyEmail, setCompanyEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [companyAddress, setCompanyAddress] = useState('');
+    const [brn, setBrn] = useState('');
+
+    const [submittedData, setSubmittedData] = useState(null);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = {
+            name: companyName,
+            email: companyEmail,
+            phone: [phoneNumber],
+            address: companyAddress,
+            brn,
+        };
+        try {
+            const result = await createCompany(formData);
+            setSubmittedData(result);
+            console.log('Form submitted', result);
+            handleClose();
+            window.location.reload();
+        } catch (error) {
+            console.error('Error submitting form', error);
+            // Handle error appropriately
+        }
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
+        // Reset form fields
+        setCompanyName('');
+        setCompanyEmail('');
+        setPhoneNumber('');
+        setCompanyAddress('');
+        setBrn('');
         setOpen(false);
     };
 
@@ -53,23 +81,37 @@ function NewCompany() {
                                 required
                                 id="outlined-required"
                                 label="Company Name"
+                                value={companyName}
+                                onChange={(e) => setCompanyName(e.target.value)}
                             />
                             <TextField
                                 required
                                 id="outlined-required"
                                 label="Company Email"
+                                value={companyEmail}
+                                onChange={(e) => setCompanyEmail(e.target.value)}
                             />
-                            <Stack spacing={2} direction={'row'}>
-                                <TextField
-                                    required
-                                    id="outlined-required"
-                                    label="Phone Number"
-                                />
-                                {/* <TextField
-                                    id="outlined-required"
-                                    label="Phone Number"
-                                /> */}
-                            </Stack>
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Phone Number"
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Company Address"
+                                value={companyAddress}
+                                onChange={(e) => setCompanyAddress(e.target.value)}
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="BRN"
+                                value={brn}
+                                onChange={(e) => setBrn(e.target.value)}
+                            />
                             <Button
                                 variant="contained"
                                 type="submit"
@@ -81,7 +123,7 @@ function NewCompany() {
                                     }
                                 }}
                             >
-                                Submit
+                                Add
                             </Button>
                         </Stack>
                     </form>

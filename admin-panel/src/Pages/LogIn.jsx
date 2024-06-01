@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,28 +10,59 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import useFlexaroUser from '../flexaro_user';
 import { useNavigate } from 'react-router-dom';
+import config from './Components/LogIn/config';
 
 export default function LogIn() {
     const { login, user, isLoading, error } = useFlexaroUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const [loginError, setLoginError] = useState(null);
-    const nevigate = useNavigate();
+    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    useEffect(() => {
+        const savedEmail = localStorage.getItem('rememberedEmail');
+        if (savedEmail) {
+            setEmail(savedEmail);
+            setRememberMe(true);
+        }
+    }, []);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Add form submission logic here
-        const mockUser = {
-            email: email,
-            password: password,
-            jwt: "mock-jwt-token"
-        };
+        setLoginError(null); // Clear previous errors
 
         try {
-            login(mockUser);
-            console.log('Form submitted');
-            nevigate('/');
-        } catch (err) {
+            const response = await fetch(`${config.apiURL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            await login({ email, token });
+
+            localStorage.setItem('jwtToken', token);
+
+            if (rememberMe) {
+                localStorage.setItem('rememberedEmail', email);
+            } else {
+                localStorage.removeItem('rememberedEmail');
+            }
+
+            navigate('/');
+        } catch (error) {
             setLoginError('Login failed. Please try again.');
         }
     };
@@ -39,7 +70,7 @@ export default function LogIn() {
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <Card sx={{ MaxWidth: 500, height: 400, alignItems: 'center', display: 'flex' }}>
+                <Card sx={{ height: 400, alignItems: 'center', display: 'flex' }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, marginBottom: 5 }}>
                             Log In
@@ -62,7 +93,10 @@ export default function LogIn() {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <FormControlLabel control={<Checkbox />} label="Remember me" />
+                                <FormControlLabel
+                                    control={<Checkbox checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />}
+                                    label="Remember me"
+                                />
                                 {loginError && (
                                     <Typography color="error" variant="body2" align="center">
                                         {loginError}
@@ -75,10 +109,10 @@ export default function LogIn() {
                                         backgroundColor: "#00000e",
                                         color: '#dbdbef',
                                         '&:hover': {
-                                            backgroundColor: "#1a1a1a", // Set your desired hover background color
+                                            backgroundColor: "#1a1a1a",
                                         }
                                     }}>
-                                    Submit
+                                    LogIn
                                 </Button>
                             </Stack>
                         </form>
@@ -86,5 +120,5 @@ export default function LogIn() {
                 </Card>
             </Box>
         </>
-    )
+    );
 }

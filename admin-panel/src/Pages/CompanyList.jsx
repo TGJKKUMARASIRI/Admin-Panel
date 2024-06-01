@@ -36,7 +36,6 @@ const CompanyList = ({ children }) => {
                                         {/* </Typography> */}
                                     </CardContent>
                                     <StyledActions>
-                                        {/* <Button size="small">+ Add a Company</Button> */}
                                         <NewCompany />
                                     </StyledActions>
                                 </Card>
@@ -47,9 +46,7 @@ const CompanyList = ({ children }) => {
                                         <Typography gutterBottom variant="h5" component="div">
                                             Company Details
                                         </Typography>
-                                        {/* <Typography variant="body2" color="text.secondary"> */}
                                             {children}
-                                        {/* </Typography> */}
                                     </CardContent>
                                 </Card>
                             </Grid>
