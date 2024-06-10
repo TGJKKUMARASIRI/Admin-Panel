@@ -1,5 +1,7 @@
 import CompanyList from './Pages/CompanyList';
 import CompanyDetails from './Pages/Components/CompanyList/CompanyDetails';
+import EditCompany from './Pages/Components/CompanyList/EditCompany';
+import UserTable from './Pages/Components/CompanyUsers/User_Details';
 import Home from './Pages/Home';
 import Layout from './Pages/Layout';
 import LogIn from './Pages/LogIn';
@@ -32,6 +34,8 @@ function App() {
           <Route path="/Update Manager" element={<UpdateManager />} />
           <Route path="/Company List" element={<CompanyList />} />
           <Route path="/details/:id" element={<CompanyDetails />} />
+          <Route path="/edit-company/:companyId" element={<EditCompany />} />
+          <Route path="/company-users/:companyId" element={<UserTable />} />
         </Route>
       </Routes>
     </Router>

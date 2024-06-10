@@ -43,9 +43,9 @@ const CompanyList = ({ children }) => {
                             <Grid item xs={6}>
                                 <Card sx={{ maxWidth: '100%', height: '88vh' }}>
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        {/* <Typography gutterBottom variant="h5" component="div">
                                             Company Details
-                                        </Typography>
+                                        </Typography> */}
                                             {children}
                                     </CardContent>
                                 </Card>
