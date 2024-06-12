@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer,
     TableHead, TableRow, Paper, CircularProgress,
-    Stack
+    Stack, Button
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 import config from '../LogIn/config';
 import Typography from '@mui/material/Typography';
 import NewUser from './Add_New_User';
+import EditUser from './Edit_Company_User';
+import EditIcon from '@mui/icons-material/Edit';
 
 const UserTable = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedUserId, setSelectedUserId] = useState(null);
     const token = localStorage.getItem('jwtToken');
     const { companyId } = useParams();
 
@@ -45,6 +48,14 @@ const UserTable = () => {
         fetchUsers();
     }, [companyId, token]);
 
+    const handleEditButtonClick = (userId) => {
+        setSelectedUserId(userId);
+    };
+
+    const handleCloseEditDialog = () => {
+        setSelectedUserId(null);
+    };
+
     return (
         <div>
             <Stack spacing={2}>
@@ -75,6 +86,14 @@ const UserTable = () => {
                                                 <TableCell>{user.email}</TableCell>
                                                 <TableCell>{user.role ? user.role.name : 'Role Not Specified'}</TableCell>
                                                 <TableCell>{user.company ? user.company.name : 'Company Not Specified'}</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        color="primary"
+                                                        onClick={() => handleEditButtonClick(user._id)}
+                                                    >
+                                                        <EditIcon style={{ color: '#00000e' }} />
+                                                    </Button>
+                                                </TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -86,6 +105,13 @@ const UserTable = () => {
                 <Box display="flex" justifyContent="right" width="100%">
                     <NewUser companyId={companyId} />
                 </Box>
+                {selectedUserId && (
+                    <EditUser
+                        companyId={companyId}
+                        userId={selectedUserId}
+                        onClose={handleCloseEditDialog}
+                    />
+                )}
             </Stack>
         </div>
     );

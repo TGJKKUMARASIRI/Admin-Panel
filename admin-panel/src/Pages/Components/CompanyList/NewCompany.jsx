@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { createCompany } from './CreateCompanyApi';
+import { createBranch } from './CreateBranchApi';
 
 function NewCompany() {
     const [open, setOpen] = useState(false);
@@ -31,6 +32,18 @@ function NewCompany() {
             const result = await createCompany(formData);
             setSubmittedData(result);
             console.log('Form submitted', result);
+
+            // Create a branch for the new company
+            const branchData = {
+                company: result._id,
+                name: 'First Branch',
+                address: companyAddress,
+                phone: [phoneNumber],
+                email: companyEmail,
+            };
+            const newBranch = await createBranch(branchData);
+            console.log('Branch created', newBranch);
+
             handleClose();
             window.location.reload();
         } catch (error) {

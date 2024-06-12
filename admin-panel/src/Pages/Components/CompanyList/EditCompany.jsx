@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import CompanyList from '../../CompanyList';
 import { fetchCompanies } from './GetCompanyList';
 import config from '../LogIn/config';
+import Grid from '@mui/material/Grid';
 
 function EditCompany() {
     const { companyId } = useParams();
@@ -113,19 +114,40 @@ function EditCompany() {
                             value={companyData.brn}
                             onChange={handleChange}
                         />
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            sx={{
-                                backgroundColor: '#00000e',
-                                color: '#dbdbef',
-                                '&:hover': {
-                                    backgroundColor: "#1a1a1a",
-                                }
-                            }}
-                        >
-                            Edit
-                        </Button>
+                        <Grid container spacing={1}>
+                            <Grid item xs={6}>
+                            <Button
+                                    variant="contained"
+                                    sx={{
+                                        width: '95%',
+                                        backgroundColor: '#00000e',
+                                        color: '#dbdbef',
+                                        '&:hover': {
+                                            backgroundColor: "#1a1a1a",
+                                        }
+                                    }}
+                                    onClick={() => navigate(`/details/${companyId}`)}
+                                >
+                                    Cancel
+                                </Button>
+                            </Grid>
+                            <Grid item xs={6}>
+                            <Button
+                                    variant="contained"
+                                    type="submit"
+                                    sx={{
+                                        width: '95%',
+                                        backgroundColor: '#00000e',
+                                        color: '#dbdbef',
+                                        '&:hover': {
+                                            backgroundColor: "#1a1a1a",
+                                        }
+                                    }}
+                                >
+                                    Edit
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Stack>
                 </form>
             </CompanyList>
