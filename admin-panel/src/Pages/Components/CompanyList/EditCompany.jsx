@@ -7,6 +7,8 @@ import CompanyList from '../../CompanyList';
 import { fetchCompanies } from './GetCompanyList';
 import config from '../LogIn/config';
 import Grid from '@mui/material/Grid';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 function EditCompany() {
     const { companyId } = useParams();
@@ -16,7 +18,8 @@ function EditCompany() {
         email: '',
         phone: '',
         address: '',
-        brn: ''
+        brn: '',
+        isActive: true, // Add isActive field to state
     });
 
     useEffect(() => {
@@ -56,10 +59,10 @@ function EditCompany() {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
         setCompanyData(prevData => ({
             ...prevData,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         }));
     };
 
@@ -113,6 +116,25 @@ function EditCompany() {
                             label="BRN"
                             value={companyData.brn}
                             onChange={handleChange}
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={companyData.isActive}
+                                    onChange={handleChange}
+                                    name="isActive"
+                                    color="primary"
+                                    sx={{
+                                        '& .MuiSvgIcon-root': {
+                                            color: '#dbdbef', // Change the tick color here
+                                        },
+                                        '&.Mui-checked .MuiSvgIcon-root': {
+                                            color: '#00000e', // Ensure color changes when checked
+                                        },
+                                    }}
+                                />
+                            }
+                            label="Active"
                         />
                         <Grid container spacing={1}>
                             <Grid item xs={6}>
