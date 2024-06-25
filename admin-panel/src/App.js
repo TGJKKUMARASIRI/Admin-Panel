@@ -1,4 +1,5 @@
 import CompanyList from './Pages/CompanyList';
+import BranchTable from './Pages/Components/Branches/Branch_Details';
 import CompanyDetails from './Pages/Components/CompanyList/CompanyDetails';
 import EditCompany from './Pages/Components/CompanyList/EditCompany';
 import UserTable from './Pages/Components/CompanyUsers/User_Details';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/details/:id" element={<CompanyDetails />} />
           <Route path="/edit-company/:companyId" element={<EditCompany />} />
           <Route path="/company-users/:companyId" element={<UserTable />} />
+          <Route path="/company-branches/:companyId" element={<BranchTable />} />
         </Route>
       </Routes>
     </Router>

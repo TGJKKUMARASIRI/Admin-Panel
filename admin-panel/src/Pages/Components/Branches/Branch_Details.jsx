@@ -8,67 +8,67 @@ import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 import config from '../LogIn/config';
 import Typography from '@mui/material/Typography';
-import NewUser from './Add_New_User';
-import EditUser from './Edit_Company_User';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import DeleteUser from './Delete_Company_User';
+import NewBranch from './Add_New_Branch';
+import EditBranch from './Edit_Branch';
+import DeleteBranch from './Delete_Branch';
 
-const UserTable = () => {
-    const [users, setUsers] = useState([]);
+const BranchTable = () => {
+    const [branches, setBranches] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedUserId, setSelectedUserId] = useState(null);
+    const [selectedBranchId, setSelectedBranchId] = useState(null);
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const token = localStorage.getItem('jwtToken');
     const { companyId } = useParams();
 
     useEffect(() => {
-        async function fetchUsers() {
+        async function fetchBranches() {
             try {
-                const response = await fetch(`${config.apiURL}/sys-company-manager/company/get-user-list`, {
-                    method: 'POST', // Updated to POST
+                const response = await fetch(`${config.apiURL}/sys-company-manager/company/get-branches`, {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         companyId: companyId,
-                        perPage: 20, // You can adjust this value or make it dynamic
-                        page: 1 // You can adjust this value or make it dynamic
+                        perPage: 20,
+                        page: 1
                     })
                 });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                setUsers(data);
+                setBranches(data);
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error fetching branches:', error);
             } finally {
                 setLoading(false);
             }
         }
-        fetchUsers();
+        fetchBranches();
     }, [companyId, token]);
 
-    const handleEditButtonClick = (userId) => {
-        setSelectedUserId(userId);
+    const handleEditButtonClick = (branchId) => {
+        setSelectedBranchId(branchId);
         setEditDialogOpen(true);
     };
 
     const handleCloseEditDialog = () => {
-        setSelectedUserId(null);
+        setSelectedBranchId(null);
         setEditDialogOpen(false);
     };
 
-    const handleDeleteButtonClick = (userId) => {
-        setSelectedUserId(userId);
+    const handleDeleteButtonClick = (branchId) => {
+        setSelectedBranchId(branchId);
         setDeleteDialogOpen(true);
     };
 
     const handleCloseDeleteDialog = () => {
-        setSelectedUserId(null);
+        setSelectedBranchId(null);
         setDeleteDialogOpen(false);
     };
 
@@ -80,38 +80,38 @@ const UserTable = () => {
                         {loading ? (
                             <CircularProgress />
                         ) : (
-                            users.length === 0 ? (
+                            branches.length === 0 ? (
                                 <Typography variant="h6" align="center" style={{ margin: '20px 0' }}>
-                                    Currently no users
+                                    Currently no branches
                                 </Typography>
                             ) : (
                                 <Table>
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Name</TableCell>
+                                            <TableCell>Address</TableCell>
+                                            <TableCell>Phone</TableCell>
                                             <TableCell>Email</TableCell>
-                                            <TableCell>Role</TableCell>
-                                            <TableCell>Company</TableCell>
                                             <TableCell>Edit</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {users.map((user) => (
-                                            <TableRow key={user._id}>
-                                                <TableCell>{`${user.first_name} ${user.last_name}`}</TableCell>
-                                                <TableCell>{user.email}</TableCell>
-                                                <TableCell>{user.role ? user.role.name : 'Role Not Specified'}</TableCell>
-                                                <TableCell>{user.company ? user.company.name : 'Company Not Specified'}</TableCell>
+                                        {branches.map((branch) => (
+                                            <TableRow key={branch._id}>
+                                                <TableCell>{branch.name}</TableCell>
+                                                <TableCell>{branch.address}</TableCell>
+                                                <TableCell>{branch.phone.join(', ')}</TableCell>
+                                                <TableCell>{branch.email}</TableCell>
                                                 <TableCell>
                                                     <Button
                                                         color="primary"
-                                                        onClick={() => handleEditButtonClick(user._id)}
+                                                        onClick={() => handleEditButtonClick(branch._id)}
                                                     >
                                                         <EditIcon style={{ color: '#00000e' }} />
                                                     </Button>
                                                     <Button
                                                         color="primary"
-                                                        onClick={() => handleDeleteButtonClick(user._id)}
+                                                        onClick={() => handleDeleteButtonClick(branch._id)}
                                                     >
                                                         <DeleteIcon style={{ color: '#00000e' }} />
                                                     </Button>
@@ -125,19 +125,19 @@ const UserTable = () => {
                     </TableContainer>
                 </Box>
                 <Box display="flex" justifyContent="right" width="100%">
-                    <NewUser companyId={companyId} />
+                    <NewBranch companyId={companyId} />
                 </Box>
                 {editDialogOpen && (
-                    <EditUser
+                    <EditBranch
                         companyId={companyId}
-                        userId={selectedUserId}
+                        branchId={selectedBranchId}
                         onClose={handleCloseEditDialog}
                     />
                 )}
                 {deleteDialogOpen && (
-                    <DeleteUser
+                    <DeleteBranch
                         companyId={companyId}
-                        userId={selectedUserId}
+                        branchId={selectedBranchId}
                         onClose={handleCloseDeleteDialog}
                     />
                 )}
@@ -146,4 +146,4 @@ const UserTable = () => {
     );
 };
 
-export default UserTable;
+export default BranchTable;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -9,22 +8,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import config from '../LogIn/config';
 
-function EditUser({ userId, onClose, companyId }) {
+function EditBranch({ branchId, onClose, companyId }) {
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState({
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        role_id: ''
+    const [branchData, setBranchData] = useState({
+        name: '',
+        address: '',
+        phone: '',
+        email: ''
     });
 
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
 
-        async function fetchUsers() {
+        async function fetchBranch() {
             try {
-                const response = await fetch(`${config.apiURL}/sys-company-manager/company/get-user-list`, {
+                const response = await fetch(`${config.apiURL}/sys-company-manager/company/get-branches`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -40,51 +38,49 @@ function EditUser({ userId, onClose, companyId }) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                const foundUser = data.find((user) => user._id === userId);
-                setUserData(foundUser || {
-                    first_name: '',
-                    last_name: '',
-                    email: '',
-                    password: '',
-                    role_id: ''
+                const foundBranch = data.find((branch) => branch._id === branchId);
+                setBranchData(foundBranch || {
+                    name: '',
+                    address: '',
+                    phone: '',
+                    email: ''
                 });
-                // setOpen(true); // Open the dialog box when data is fetched
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error fetching branches:', error);
             } finally {
                 setLoading(false);
             }
         }
 
-        fetchUsers();
-    }, [userId, companyId]);
+        fetchBranch();
+    }, [branchId, companyId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const token = localStorage.getItem('jwtToken');
 
-        fetch(`${config.apiURL}/sys-company-manager/company/edit-user`, {
+        fetch(`${config.apiURL}/sys-company-manager/company/update-branch`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({ ...userData, _id: userId }),
+            body: JSON.stringify({ ...branchData, _id: branchId }),
         })
             .then(response => response.json())
             .then(data => {
-                console.log("User updated successfully", data);
+                console.log("Branch updated successfully", data);
                 window.location.reload();
                 onClose();
             })
             .catch(error => {
-                console.error("There was an error updating the user!", error);
+                console.error("There was an error updating the branch!", error);
             });
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUserData(prevData => ({
+        setBranchData(prevData => ({
             ...prevData,
             [name]: value
         }));
@@ -93,56 +89,40 @@ function EditUser({ userId, onClose, companyId }) {
     return (
         <div>
             <Dialog open={true} onClose={onClose}>
-                <DialogTitle>Edit User</DialogTitle>
+                <DialogTitle>Edit Branch</DialogTitle>
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         <Stack spacing={2}>
                             <TextField
                                 required
                                 sx={{ width: 500 }}
-                                // variant="standard"
-                                id="user-first-name"
-                                name="first_name"
-                                // label="First Name"
-                                value={userData.first_name}
+                                id="branch-name"
+                                name="name"
+                                label="Branch Name"
+                                value={branchData.name}
                                 onChange={handleChange}
                             />
                             <TextField
-                                required
-                                // variant="standard"
-                                id="user-last-name"
-                                name="last_name"
-                                // label="Last Name"
-                                value={userData.last_name}
+                                id="branch-address"
+                                name="address"
+                                label="Address"
+                                value={branchData.address}
                                 onChange={handleChange}
                             />
                             <TextField
-                                required
-                                // variant="standard"
-                                id="user-email"
+                                id="branch-phone"
+                                name="phone"
+                                label="Phone"
+                                value={branchData.phone}
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                id="branch-email"
                                 name="email"
-                                // label="Email"
-                                value={userData.email}
+                                label="Email"
+                                value={branchData.email}
                                 onChange={handleChange}
                             />
-                            {/* <TextField
-                                    variant="standard"
-                                    id="user-password"
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    value={userData.password}
-                                    onChange={handleChange}
-                                /> */}
-                            {/* <TextField
-                                    required
-                                    variant="standard"
-                                    id="user-role"
-                                    name="role_id"
-                                    label="Role ID"
-                                    value={userData.role_id}
-                                    onChange={handleChange}
-                                /> */}
                         </Stack>
                     </form>
                 </DialogContent>
@@ -151,11 +131,7 @@ function EditUser({ userId, onClose, companyId }) {
                         onClick={onClose}
                         color="primary"
                         sx={{
-                            // backgroundColor: '#00000e',
                             color: '#00000e',
-                            // '&:hover': {
-                            //     backgroundColor: "#1a1a1a",
-                            // }
                         }}
                     >
                         Cancel
@@ -180,4 +156,4 @@ function EditUser({ userId, onClose, companyId }) {
     );
 }
 
-export default EditUser;
+export default EditBranch;

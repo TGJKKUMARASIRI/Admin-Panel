@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import DeleteCompany from './DeleteCompany';
 import EditButton from './EditCompanyButton';
 import UsersButton from '../CompanyUsers/Users_Button';
+import BranchButton from '../Branches/Branch_Button';
 
 export default function CompanyDetails() {
   const { id } = useParams();
@@ -65,7 +66,10 @@ export default function CompanyDetails() {
           <p>Phone: {company.phone.join(', ')}</p>
           {/* Display other fields as needed */}
           <Box>
-            <UsersButton companyId={id} />
+            <Stack direction="row" spacing={2}>
+              <UsersButton companyId={id} />
+              <BranchButton companyId={id} />
+            </Stack>
           </Box>
         </Box>
       </CompanyList>
