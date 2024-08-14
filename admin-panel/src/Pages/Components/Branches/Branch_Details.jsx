@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import NewBranch from './Add_New_Branch';
 import EditBranch from './Edit_Branch';
 import DeleteBranch from './Delete_Branch';
+import colors from '../../../colors';
 
 const BranchTable = () => {
     const [branches, setBranches] = useState([]);
@@ -92,7 +93,7 @@ const BranchTable = () => {
                                             <TableCell>Address</TableCell>
                                             <TableCell>Phone</TableCell>
                                             <TableCell>Email</TableCell>
-                                            <TableCell>Edit</TableCell>
+                                            <TableCell>Actions</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -107,13 +108,13 @@ const BranchTable = () => {
                                                         color="primary"
                                                         onClick={() => handleEditButtonClick(branch._id)}
                                                     >
-                                                        <EditIcon style={{ color: '#00000e' }} />
+                                                        <EditIcon style={{ color: colors.primary }} />
                                                     </Button>
                                                     <Button
                                                         color="primary"
                                                         onClick={() => handleDeleteButtonClick(branch._id)}
                                                     >
-                                                        <DeleteIcon style={{ color: '#00000e' }} />
+                                                        <DeleteIcon style={{ color: colors.primary }} />
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>

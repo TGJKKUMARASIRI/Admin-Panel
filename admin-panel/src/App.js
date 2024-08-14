@@ -3,6 +3,7 @@ import BranchTable from './Pages/Components/Branches/Branch_Details';
 import CompanyDetails from './Pages/Components/CompanyList/CompanyDetails';
 import EditCompany from './Pages/Components/CompanyList/EditCompany';
 import UserTable from './Pages/Components/CompanyUsers/User_Details';
+import CreateSubscription from './Pages/Components/PaymentDtails/CreateSubscription';
 import Home from './Pages/Home';
 import Layout from './Pages/Layout';
 import LogIn from './Pages/LogIn';
@@ -38,6 +39,7 @@ function App() {
           <Route path="/edit-company/:companyId" element={<EditCompany />} />
           <Route path="/company-users/:companyId" element={<UserTable />} />
           <Route path="/company-branches/:companyId" element={<BranchTable />} />
+          <Route path="/Create-Subscription/:id" element={<CreateSubscription />} />
         </Route>
       </Routes>
     </Router>

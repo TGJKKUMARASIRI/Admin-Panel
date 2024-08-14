@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { createBranch } from '../CompanyList/CreateBranchApi';
+import colors from '../../../colors';
 
 function NewBranch({ companyId }) {
     const [open, setOpen] = useState(false);
@@ -55,10 +56,10 @@ function NewBranch({ companyId }) {
                 onClick={handleClickOpen}
                 variant="contained"
                 sx={{
-                    backgroundColor: '#00000e', // Set your desired background color
-                    color: '#dbdbef', // Set your desired text color
+                    backgroundColor: colors.primary, // Set your desired background color
+                    color: colors.secondary, // Set your desired text color
                     '&:hover': {
-                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                        backgroundColor: colors.hover2, // Set your desired hover background color
                     }
                 }}
             >
@@ -101,10 +102,10 @@ function NewBranch({ companyId }) {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    backgroundColor: '#00000e', // Set your desired background color
-                                    color: '#dbdbef', // Set your desired text color
+                                    backgroundColor: colors.primary, // Set your desired background color
+                                    color: colors.secondary, // Set your desired text color
                                     '&:hover': {
-                                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                                        backgroundColor: colors.hover2, // Set your desired hover background color
                                     }
                                 }}
                             >

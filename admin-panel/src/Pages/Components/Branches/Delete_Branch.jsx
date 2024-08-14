@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import config from '../LogIn/config';
+import colors from '../../../colors';
 
 function DeleteBranch({ branchId, onClose, companyId }) {
     const handleDelete = async () => {
@@ -45,7 +46,7 @@ function DeleteBranch({ branchId, onClose, companyId }) {
                         onClick={onClose}
                         color="primary"
                         sx={{
-                            color: '#00000e',
+                            color: colors.primary,
                         }}
                     >
                         Cancel
@@ -55,10 +56,10 @@ function DeleteBranch({ branchId, onClose, companyId }) {
                         color="primary"
                         variant="contained"
                         sx={{
-                            backgroundColor: '#00000e',
-                            color: '#dbdbef',
+                            backgroundColor: colors.delete_button_background,
+                            color: colors.secondary,
                             '&:hover': {
-                                backgroundColor: "#1a1a1a",
+                                backgroundColor: colors.delete_button_hover,
                             }
                         }}
                     >

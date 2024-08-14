@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import colors from '../../../colors';
 
 function UsersButton({ companyId }) {
     const navigate = useNavigate();
@@ -15,10 +16,10 @@ function UsersButton({ companyId }) {
             onClick={handleEditClick}
             variant="contained"
             sx={{
-                backgroundColor: '#00000e',
-                color: '#dbdbef',
+                backgroundColor: colors.primary,
+                color: colors.secondary,
                 '&:hover': {
-                    backgroundColor: "#1a1a1a",
+                    backgroundColor: colors.hover2,
                 }
             }}
         >

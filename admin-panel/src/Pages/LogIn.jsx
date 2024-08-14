@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import useFlexaroUser from '../flexaro_user';
 import { useNavigate } from 'react-router-dom';
 import config from './Components/LogIn/config';
+import colors from '../colors';
 
 export default function LogIn() {
     const { login, user, isLoading, error } = useFlexaroUser();
@@ -106,10 +107,10 @@ export default function LogIn() {
                                     variant="contained"
                                     type="submit"
                                     sx={{
-                                        backgroundColor: "#00000e",
-                                        color: '#dbdbef',
+                                        backgroundColor: colors.primary,
+                                        color: colors.secondary,
                                         '&:hover': {
-                                            backgroundColor: "#1a1a1a",
+                                            backgroundColor: colors.hover,
                                         }
                                     }}>
                                     LogIn

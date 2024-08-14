@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import config from '../LogIn/config';
+import colors from '../../../colors';
 
 function DeleteUser({ userId, onClose, companyId }) {
     const handleDelete = async () => {
@@ -46,7 +47,7 @@ function DeleteUser({ userId, onClose, companyId }) {
                         onClick={onClose}
                         color="primary"
                         sx={{
-                            color: '#00000e',
+                            color: colors.primary,
                         }}
                     >
                         Cancel
@@ -56,10 +57,10 @@ function DeleteUser({ userId, onClose, companyId }) {
                         color="primary"
                         variant="contained"
                         sx={{
-                            backgroundColor: '#00000e',
-                            color: '#dbdbef',
+                            backgroundColor: colors.delete_button_background,
+                            color: colors.secondary,
                             '&:hover': {
-                                backgroundColor: "#1a1a1a",
+                                backgroundColor: colors.delete_button_hover,
                             }
                         }}
                     >

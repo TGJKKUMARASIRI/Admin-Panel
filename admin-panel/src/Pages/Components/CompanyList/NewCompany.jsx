@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { createCompany } from './CreateCompanyApi';
 import { createBranch } from './CreateBranchApi';
+import colors from '../../../colors';
 
 function NewCompany() {
     const [open, setOpen] = useState(false);
@@ -73,10 +74,10 @@ function NewCompany() {
                 onClick={handleClickOpen}
                 variant="contained"
                 sx={{
-                    backgroundColor: '#00000e', // Set your desired background color
-                    color: '#dbdbef', // Set your desired text color
+                    backgroundColor: colors.primary, // Set your desired background color
+                    color: colors.secondary, // Set your desired text color
                     '&:hover': {
-                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                        backgroundColor: colors.hover2, // Set your desired hover background color
                     }
                 }}
             >
@@ -129,10 +130,10 @@ function NewCompany() {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    backgroundColor: '#00000e', // Set your desired background color
-                                    color: '#dbdbef', // Set your desired text color
+                                    backgroundColor: colors.primary, // Set your desired background color
+                                    color: colors.secondary, // Set your desired text color
                                     '&:hover': {
-                                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                                        backgroundColor: colors.hover2, // Set your desired hover background color
                                     }
                                 }}
                             >

@@ -9,6 +9,7 @@ import config from '../LogIn/config';
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import colors from '../../../colors';
 
 function EditCompany() {
     const { companyId } = useParams();
@@ -142,10 +143,10 @@ function EditCompany() {
                                     variant="contained"
                                     sx={{
                                         width: '95%',
-                                        backgroundColor: '#00000e',
-                                        color: '#dbdbef',
+                                        backgroundColor: colors.primary,
+                                        color: colors.secondary,
                                         '&:hover': {
-                                            backgroundColor: "#1a1a1a",
+                                            backgroundColor: colors.hover2,
                                         }
                                     }}
                                     onClick={() => navigate(`/details/${companyId}`)}
@@ -159,10 +160,10 @@ function EditCompany() {
                                     type="submit"
                                     sx={{
                                         width: '95%',
-                                        backgroundColor: '#00000e',
-                                        color: '#dbdbef',
+                                        backgroundColor: colors.primary,
+                                        color: colors.secondary,
                                         '&:hover': {
-                                            backgroundColor: "#1a1a1a",
+                                            backgroundColor: colors.hover2,
                                         }
                                     }}
                                 >

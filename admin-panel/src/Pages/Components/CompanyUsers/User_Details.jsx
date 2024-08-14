@@ -13,6 +13,7 @@ import EditUser from './Edit_Company_User';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteUser from './Delete_Company_User';
+import colors from '../../../colors';
 
 const UserTable = () => {
     const [users, setUsers] = useState([]);
@@ -92,7 +93,7 @@ const UserTable = () => {
                                             <TableCell>Email</TableCell>
                                             <TableCell>Role</TableCell>
                                             <TableCell>Company</TableCell>
-                                            <TableCell>Edit</TableCell>
+                                            <TableCell>Actions</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -107,13 +108,13 @@ const UserTable = () => {
                                                         color="primary"
                                                         onClick={() => handleEditButtonClick(user._id)}
                                                     >
-                                                        <EditIcon style={{ color: '#00000e' }} />
+                                                        <EditIcon style={{ color: colors.primary }} />
                                                     </Button>
                                                     <Button
                                                         color="primary"
                                                         onClick={() => handleDeleteButtonClick(user._id)}
                                                     >
-                                                        <DeleteIcon style={{ color: '#00000e' }} />
+                                                        <DeleteIcon style={{ color: colors.primary }} />
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>

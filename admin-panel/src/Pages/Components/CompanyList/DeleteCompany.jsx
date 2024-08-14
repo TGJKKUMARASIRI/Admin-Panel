@@ -8,6 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from 'react-router-dom';
 import config from '../LogIn/config';
+import colors from '../../../colors';
 
 function DeleteCompany({ companyId }) {
     const [open, setOpen] = useState(false); // Set this to the company ID you want to delete
@@ -57,10 +58,10 @@ function DeleteCompany({ companyId }) {
                 onClick={handleClickOpen}
                 variant="contained"
                 sx={{
-                    backgroundColor: '#00000e',
-                    color: '#dbdbef',
+                    backgroundColor: colors.primary,
+                    color: colors.secondary,
                     '&:hover': {
-                        backgroundColor: "#1a1a1a",
+                        backgroundColor: colors.hover,
                     }
                 }}
             >
@@ -85,10 +86,10 @@ function DeleteCompany({ companyId }) {
                         onClick={handleClose}
                         color="primary"
                         sx={{
-                            backgroundColor: '#00000e',
-                            color: '#dbdbef',
+                            backgroundColor: colors.primary,
+                            color: colors.secondary,
                             '&:hover': {
-                                backgroundColor: "#1a1a1a",
+                                backgroundColor: colors.hover2,
                             }
                         }}
                     >
@@ -98,10 +99,10 @@ function DeleteCompany({ companyId }) {
                         onClick={handleDelete}
                         color="primary" autoFocus
                         sx={{
-                            backgroundColor: '#8B0000',
-                            color: '#dbdbef',
+                            backgroundColor: colors.delete_button_background,
+                            color: colors.secondary,
                             '&:hover': {
-                                backgroundColor: "#2a0000",
+                                backgroundColor: colors.delete_button_hover,
                             }
                         }}
                     >

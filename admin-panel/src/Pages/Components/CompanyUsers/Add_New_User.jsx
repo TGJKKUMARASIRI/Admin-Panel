@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { createUser } from './Add_New_User_Api';
 import config from '../LogIn/config';
+import colors from '../../../colors';
 
 function NewUser({ companyId }) {
     const [open, setOpen] = useState(false);
@@ -84,10 +85,10 @@ function NewUser({ companyId }) {
                 onClick={handleClickOpen}
                 variant="contained"
                 sx={{
-                    backgroundColor: '#00000e', // Set your desired background color
-                    color: '#dbdbef', // Set your desired text color
+                    backgroundColor: colors.primary, // Set your desired background color
+                    color: colors.secondary, // Set your desired text color
                     '&:hover': {
-                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                        backgroundColor: colors.hover2, // Set your desired hover background color
                     }
                 }}
             >
@@ -134,10 +135,10 @@ function NewUser({ companyId }) {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    backgroundColor: '#00000e', // Set your desired background color
-                                    color: '#dbdbef', // Set your desired text color
+                                    backgroundColor: colors.primary, // Set your desired background color
+                                    color: colors.secondary, // Set your desired text color
                                     '&:hover': {
-                                        backgroundColor: "#1a1a1a", // Set your desired hover background color
+                                        backgroundColor: colors.hover2, // Set your desired hover background color
                                     }
                                 }}
                             >

@@ -19,7 +19,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ListIcon from '@mui/icons-material/List';
 import { useNavigate } from 'react-router-dom';
 import useFlexaroUser from './flexaro_user';
-
+import colors from './colors';
 
 const drawerWidth = 240;
 
@@ -54,20 +54,20 @@ export default function Sidenave() {
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
-            backgroundColor: '#00000e',
+            backgroundColor: colors.primary, // Set the background color of the drawer to the primary color
             boxSizing: 'border-box',
             color: '#dbdbef'
           },
           '& .MuiListItem-root': {
             '&:hover': {
-              backgroundColor: '#29292e', // Set the hover color to a darker shade
+              backgroundColor: colors.hover, // Set the hover color to a darker shade
             },
           },
           '& .MuiSvgIcon-root': {
-            color: '#dbdbef', // Set the color of icons to white
+            color: colors.secondary, // Set the color of icons to white
           },
           '& .MuiDivider-root': {
-            backgroundColor: '#dbdbef', // Set the color of the divider to white
+            backgroundColor: colors.secondary, // Set the color of the divider to white
           },
         }}
         variant="permanent"

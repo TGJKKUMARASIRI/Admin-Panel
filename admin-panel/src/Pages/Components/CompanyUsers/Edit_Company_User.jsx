@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import config from '../LogIn/config';
+import colors from '../../../colors';
 
 function EditUser({ userId, onClose, companyId }) {
     const [loading, setLoading] = useState(true);
@@ -152,7 +153,7 @@ function EditUser({ userId, onClose, companyId }) {
                         color="primary"
                         sx={{
                             // backgroundColor: '#00000e',
-                            color: '#00000e',
+                            color: colors.primary,
                             // '&:hover': {
                             //     backgroundColor: "#1a1a1a",
                             // }
@@ -165,10 +166,10 @@ function EditUser({ userId, onClose, companyId }) {
                         color="primary"
                         variant="contained"
                         sx={{
-                            backgroundColor: '#00000e',
-                            color: '#dbdbef',
+                            backgroundColor: colors.primary,
+                            color: colors.secondary,
                             '&:hover': {
-                                backgroundColor: "#1a1a1a",
+                                backgroundColor: colors.hover2,
                             }
                         }}
                     >
