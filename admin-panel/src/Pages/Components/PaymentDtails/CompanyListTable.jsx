@@ -13,6 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { fetchCompanies } from './GetCompanyList';
 import colors from '../../../colors';
+import { Stack } from '@mui/material';
 
 const columns = [
   {
@@ -98,6 +99,12 @@ export default function CompanyListTable() {
     }
   };
 
+  const handleInvoiceDetails = () => {
+    if (selectedCompany) {
+      navigate(`/Invoice-Details/${selectedCompany._id}`);
+    }
+  };
+
   const rowContent = (_index, row) => (
     <React.Fragment>
       <TableCell key="name" align="left">
@@ -134,6 +141,7 @@ export default function CompanyListTable() {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
+          <Stack spacing={2}>
           <Button
             onClick={handleCreateSubscription}
             color="primary"
@@ -147,6 +155,20 @@ export default function CompanyListTable() {
           >
             Create Subscription
           </Button>
+          <Button
+            onClick={handleInvoiceDetails}
+            color="primary"
+            sx={{
+              backgroundColor: colors.primary,
+              color: colors.secondary,
+              '&:hover': {
+                backgroundColor: colors.hover2,
+              }
+            }}
+          >
+            Invoice
+          </Button>
+          </Stack>
         </DialogContent>
       </Dialog>
     </div>
